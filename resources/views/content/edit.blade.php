@@ -26,7 +26,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-      <button type="submit" class="btn btn-warning">update</button>
+      <button type="submit" class="btn btn-warning">Update</button>
       <a href="/pertanyaan" class="btn btn-info">cancel</a>
     <!-- /.card-footer -->
   </div>
