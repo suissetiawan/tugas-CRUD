@@ -17,4 +17,11 @@ class Jawaban{
 		$new_items = DB::table('jawaban')->insert($data);
 		return $new_items;
 	}
+
+	public static function find_by_pertanyaan_id($id_pertanyaan){
+		$items = DB::table('jawaban')
+		->where('pertanyaan_id', $id_pertanyaan)
+		->get();
+		return $items;
+	}
 }

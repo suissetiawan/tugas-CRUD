@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pertanyaan;
+use App\Models\Jawaban;
+
 
 class PertanyaanController extends Controller
 {
@@ -25,5 +27,31 @@ class PertanyaanController extends Controller
     	if ($item) {
     		return redirect('/pertanyaan');
     	}
+    }
+
+    public function show($id){
+        $qna = Pertanyaan::find_by_id($id);
+        $jawaban = Jawaban::find_by_pertanyaan_id($id);
+        return view('content.detail-qna',compact('qna', 'jawaban'));
+
+    }
+
+    public function edit($id){
+        $qna = Pertanyaan::find_by_id($id);
+        return view('content.edit',compact('qna'));
+    }
+
+    public function update(request $request){
+        $data = $request->all();
+        unset($data['_token'], $data['_method']);
+        $up = Pertanyaan::update($data);
+        if ($up) {
+            return redirect('/pertanyaan');
+        }
+    }
+
+    public function delete($id){
+        Pertanyaan::delete($id);
+        return redirect('/pertanyaan');
     }
 }
